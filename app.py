@@ -143,9 +143,17 @@ if not df.empty:
         pos = coords.get(dong, [37.0, 127.0])
         
         color = "red" if idx == 1 else "blue"
+        # 시나리오별 점수 범위에 따른 반지름 보정
+        if "A" in col_name:
+            radius = score * 30
+        elif "B" in col_name:
+            radius = score * 0.5
+        else: # Scenario_C
+            radius = score * 15
+        
         folium.CircleMarker(
             location=pos,
-            radius=score * 20 if "C" not in col_name else score / 10,
+            radius=radius,
             popup=f"{dong} ({score})",
             color=color,
             fill=True,
