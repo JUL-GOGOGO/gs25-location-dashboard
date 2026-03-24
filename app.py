@@ -52,7 +52,7 @@ if not df.empty:
     # 2. 시나리오별 랭킹 (요청 사항 ②)
     st.subheader(f"② {selected_scenario} TOP 4 순위표")
     
-    col_name = "Scenario_A" if "A" in selected_scenario else "Scenario_B" if "B" in selected_scenario else "Scenario_C"
+    col_name = "Scenario_A" if selected_scenario.startswith("Scenario A") else "Scenario_B" if selected_scenario.startswith("Scenario B") else "Scenario_C"
     df_sorted = df.sort_values(by=col_name, ascending=False).reset_index(drop=True)
     df_sorted.index += 1
     
@@ -80,7 +80,7 @@ if not df.empty:
     # 시나리오별 심층 인사이트
     st.subheader(f"📊 {selected_scenario} 심층 인사이트")
 
-    if "A" in selected_scenario:
+    if selected_scenario.startswith("Scenario A"):
         st.markdown("""
 **[Scenario A] 수요 중심 분석 — "배후 인구 총량이 곧 매출이다"**
 
@@ -95,7 +95,7 @@ if not df.empty:
 🔹 **고덕동 (4위):** 삼성전자 평택캠퍼스 배후로 직장인 약 3.1만 명이 확인되나, 거주인구(6.5만)와 유동인구 규모가 상위 3개 동 대비 작아 총량 기준에서는 4위에 머뭅니다. 그러나 **삼성 반도체 증설에 따른 협력사 유입**이 진행 중이어서 향후 2~3년 내 급격한 수요 증가가 예상되는 '성장형 입지'입니다.
         """)
 
-    elif "B" in selected_scenario:
+    elif selected_scenario.startswith("Scenario B"):
         st.markdown("""
 **[Scenario B] 효율 중심 분석 — "같은 임대료로 더 많은 고객을 확보하라"**
 
